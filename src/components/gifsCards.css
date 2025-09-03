@@ -1,0 +1,24 @@
+.card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 12px;
+  margin: 12px;
+  display: inline-block;
+  text-align: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  transform: scale(1.04);
+}
+.card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 4px;
+}
