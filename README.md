@@ -40,6 +40,14 @@ El usuario escribe una palabra en el buscador y la aplicación muestra los GIFs 
 La clave de API está protegida porque el archivo `.env` está en `.gitignore` y no se sube al repositorio.
 
 
+## Demo online
+
+Puedes ver y probar el proyecto desplegado en Netlify aquí:
+
+👉 [https://paginabuscadorgifs.netlify.app/](https://paginabuscadorgifs.netlify.app/)
+
+---
+
 ## Ruta de mejoras y versiones
 
 A continuación, detallo el progreso del proyecto cada versión:
