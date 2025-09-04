@@ -7,6 +7,7 @@
   display: inline-block;
   text-align: center;
   transition: box-shadow 0.2s, transform 0.2s;
+  weight: 20px
 }
 .card:hover {
   box-shadow: 0 4px 16px rgba(0,0,0,0.18);
@@ -15,6 +16,7 @@
 .card img {
   max-width: 100%;
   border-radius: 8px;
+  
   margin-bottom: 8px;
 }
 .card-title {

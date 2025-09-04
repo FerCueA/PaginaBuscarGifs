@@ -1,62 +1,56 @@
 import './style.css'
-import {crearCardGifs} from './components/gifsCards'
+import { crearCardGifs } from './components/gifsCards';
 import './components/gifsCards.css';
 
-// IMPORTA LA KEY DESDE OTRO SITIO PARA EVITARLO SUBIR A GITHUB
-
+// Obtenemos la API key desde las variables de entorno (.env)
+// Así evitamos subir la clave privada al repositorio
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-//SELECTORES DEL HTML
- const formulario = document.getElementById('formulario-buscador');
- const buscador = document.getElementById('buscador');
- const galeria = document.getElementById('galeriaGifs');
+// Seleccionamos los elementos principales del HTML
+const formulario = document.getElementById('formulario-buscador'); // Formulario de búsqueda
+const buscador = document.getElementById('buscador'); // Input donde el usuario escribe
+const galeria = document.getElementById('galeriaGifs'); // Contenedor donde se muestran los GIFs
 
 
-// FUNCION BUSQUEDA 
-// creamos la funcion con la palabbra que se ingresa en el "imput" del buscador al cual le asignamos una id de "buscador"
 
-async function buscarGifs(buscador){
-    //el endpoint 
-    const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${encodeURIComponent(buscador)}&limit=12`;
+// Crea la URL (endpoint) para buscar GIFs en la API de Giphy
+// Recibe la clave y el término de búsqueda, y devuelve la URL lista para usar
+function crearEndpoint(apiKey, termino) {
+  return `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(termino)}&limit=12`;
+}
 
-    try {
-
-      // GUARDAMOS LA RESPUESTA DE LA API
-      const respuesta = await fetch (endpoint);
-      // CONVERTIMOS LA RESPUESTA EN UN JSON
-      const respuestaJson = await respuesta.json();
-      // ASI PODEMOS AVERIGUAR COMO ES LA RESPUESTA DE LOS DATOA DEL JSON
-      console.log(respuestaJson);
-        // DEVOLVEMOS LA RESPUESTA
-      return respuestaJson.data
-
-
-    } catch (error){
-      console.log("Error al buscar gifs:" , error)
-      return []
-    } ;
-};
+// Busca GIFs en la API usando el término que escribe el usuario
+// Devuelve un array de GIFs o [] si hay error
+async function buscarGifs(termino){
+  const endpoint = crearEndpoint(API_KEY, termino);
+  try {
+    const respuesta = await fetch(endpoint); // Pedimos los datos a la API
+    const respuestaJson = await respuesta.json(); // Convertimos la respuesta a JSON
+    console.log(respuestaJson); // Mostramos la respuesta completa en consola para aprender su estructura
+    return respuestaJson.data; // Devolvemos solo el array de GIFs
+  } catch (error){
+    console.log("Error al buscar gifs:", error);
+    return [];
+  }
+}
 
 
-// cuando se pulsa el boton "buscar" se genera un evento que capturamos dentro de la funcion
-formulario.onsubmit = async function (evento){
 
-  // EVITA LA RECARGA DE LA PAGINA AL DARLE AL BOTON"BUSCAR" QUE ES UN SUBMIT
-  evento.preventDefault();
+// Cuando el usuario envía el formulario (pulsa "Buscar"), se ejecuta esta función
+formulario.onsubmit = async function (evento) {
+  evento.preventDefault(); // Evita que la página se recargue
 
-  //capturamos el valor del imput del buscador y lo asignamos a una constante
+  // Tomamos el texto que el usuario escribió en el input
   const textoBuscador = buscador.value;
-  //la cual usamos para buscar con el texto en la funcion de buscar los gifs que difinimos anteriormente
+  // Buscamos los GIFs usando la función creada arriba
   const gifs = await buscarGifs(textoBuscador);
-// borra todo el contenido por si buscamos otro gifs diferente y no se quede en pantlla.
+
+  // Limpiamos la galería antes de mostrar los nuevos resultados
   galeria.innerHTML = '';
 
-// hacemos un foreach para mostar los gifs que encontro la funcion
-// y luego le decimos que hacer con ese reusltado para cada gif que enoctramos en este caso
-//llamamos al componente de las card que tenemos en componentes
+  // Recorremos el array de GIFs y mostramos cada uno usando el componente de la card
   gifs.forEach(gif => {
-    const card = crearCardGifs(gif);
-    galeria.appendChild(card);
+    const card = crearCardGifs(gif); // Creamos la card para cada GIF
+    galeria.appendChild(card);       // Añadimos la card a la galería
   });
-
 };
