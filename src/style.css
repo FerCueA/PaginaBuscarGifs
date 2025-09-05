@@ -1,8 +1,8 @@
 :root {
   --fuenteTexto2: 'Georgia';
   --fuenteTexto1: 'Arial';
-  --colorPrimario: #72dd77;
-  --colorSegundario: #3741c9;
+  --colorPrimario: hsl(150, 1%, 69%);
+  --colorSegundario: #4d53a6;
 
  
 }
@@ -23,6 +23,9 @@ body {
 }
 
 header {
+  
+  color: #fff;  
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,6 +33,24 @@ header {
   width: 100%;
 }
 
-button{
+#formulario-buscador {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#buscador {
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 200px;
   font-family: var(--fuenteTexto2);
+}
+
+
+#galeriaGifs{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;  
 }
