@@ -1,3 +1,5 @@
+
+// IMPORTAMOS LAS DEPDENDENCIAS
 import './style.css'
 import { crearCardGifs } from './components/gifsCards';
 import './components/gifsCards.css';
@@ -27,12 +29,13 @@ async function buscarGifs(termino){
     const respuesta = await fetch(endpoint); // Pedimos los datos a la API
     const respuestaJson = await respuesta.json(); // Convertimos la respuesta a JSON
     console.log(respuestaJson); // Mostramos la respuesta completa en consola para aprender su estructura
-    return respuestaJson.data; // Devolvemos solo el array de GIFs
+    return respuestaJson.data; // Devolvemos solo el array de GIFs y lo agregamos en "termino"
   } catch (error){
     console.log("Error al buscar gifs:", error);
     return [];
   }
 }
+
 
 
 
@@ -50,7 +53,24 @@ formulario.onsubmit = async function (evento) {
 
   // Recorremos el array de GIFs y mostramos cada uno usando el componente de la card
   gifs.forEach(gif => {
-    const card = crearCardGifs(gif); // Creamos la card para cada GIF
+    const esFavorito = favoritos.includes(gif.id);
+    const card = crearCardGifs(gif, esFavorito, toggleFavorito); // Creamos la card para cada GIF
+
+    
     galeria.appendChild(card);       // Añadimos la card a la galería
   });
 };
+
+
+let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+
+function toggleFavorito(id) {
+  if (favoritos.includes(id)) {
+    favoritos = favoritos.filter(favId => favId !== id);
+    console.log(`Quitado de favoritos: ${id}`);
+  } else {
+    favoritos.push(id);
+    console.log(`Añadido a favoritos: ${id}`);
+  }
+  localStorage.setItem('favoritos', JSON.stringify(favoritos));
+}
