@@ -10,6 +10,7 @@ export function crearNav() {
                 <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Favoritos</a></li>
                 <li class="nav-item"><a href="acerca.html" class="nav-link">Acerca de</a></li>
+                <li class="nav-item"><a href="https://github.com/FerCueA/PaginaBuscarGifs" class="nav-link" target="_blank" rel="noopener">GitHub</a></li>
             </ul>
         </div>
     `;
