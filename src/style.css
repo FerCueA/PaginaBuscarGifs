@@ -1,13 +1,23 @@
 :root {
   --fuenteTexto2: "Georgia";
   --fuenteTexto1: "Arial";
-  --colorPrimario: hsl(150, 1%, 69%);
-  --colorSegundario: #3a49e8;
+  --colorPrimario: #f6f7fb;
+  --colorSecundario: #4f8cff;
+  --colorAcento: #ffb347;
+  --colorOscuro: #232946;
+  --colorClaro: #eebbc3;
+  --colorFooter: #232946;
+  --colorNav: #4f8cff;
+  --colorTexto: #232946;
 }
 
 body {
-  background: linear-gradient(135deg, var(--colorPrimario) 60%, #fff 100%);
-  color: var(--colorSegundario);
+  background: linear-gradient(
+    135deg,
+    var(--colorPrimario) 60%,
+    var(--colorClaro) 100%
+  );
+  color: var(--colorTexto);
   font-family: var(--fuenteTexto1);
   margin: 0;
   padding: 0;
@@ -24,7 +34,9 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: var(--colorSegundario);
+  background: var(--colorNav);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
 }
 #footerContainer {
   display: flex;
@@ -32,7 +44,8 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: var(--colorSegundario);
+  background: var(--colorFooter);
+  color: var(--colorClaro);
 }
 
 #galeriaGifs {
