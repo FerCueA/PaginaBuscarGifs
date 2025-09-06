@@ -9,14 +9,18 @@ import { crearFormularioBuscador } from "./components/formularioBuscador";
 // Así evitamos subir la clave privada al repositorio
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-// Seleccionamos el contenedor principal donde irá el formulario
-const header = document.querySelector("header");
+// Seleccionamos el contenedor de la galería y el contenedor del formulario
 const galeria = document.getElementById("galeriaGifs"); // Contenedor donde se muestran los GIFs
+const formularioContainer = document.getElementById("formularioContainer");
+let formulario = null;
+let buscador = null;
 
-// Creamos e insertamos el formulario dinámicamente
-const formulario = crearFormularioBuscador();
-header.appendChild(formulario);
-const buscador = formulario.querySelector("#buscador");
+// Solo insertamos el formulario si existe el contenedor específico
+if (formularioContainer) {
+  formulario = crearFormularioBuscador();
+  formularioContainer.appendChild(formulario);
+  buscador = formulario.querySelector("#buscador");
+}
 
 // CREANDO EL NAV
 const navContainer = document.querySelector(".navContainer");
@@ -51,15 +55,17 @@ async function buscarGifs(termino) {
   }
 }
 
-// Cuando el usuario envía el formulario (pulsa "Buscar"), se ejecuta esta función
-formulario.onsubmit = async function (evento) {
-  evento.preventDefault(); // Evita que la página se recargue
-  const textoBuscador = buscador.value; // Tomamos el texto que el usuario escribió en el input
-  const gifs = await buscarGifs(textoBuscador); // Buscamos los GIFs usando la función creada arriba
-  galeria.innerHTML = ""; // Limpiamos la galería antes de mostrar los nuevos resultados
-  // Recorremos los GIFs y los agregamos a la galería
-  gifs.forEach((gif) => {
-    const card = crearCardGifs(gif);
-    galeria.appendChild(card);
-  });
-};
+// Solo asignamos el evento si existe el formulario
+if (formulario) {
+  formulario.onsubmit = async function (evento) {
+    evento.preventDefault(); // Evita que la página se recargue
+    const textoBuscador = buscador.value; // Tomamos el texto que el usuario escribió en el input
+    const gifs = await buscarGifs(textoBuscador); // Buscamos los GIFs usando la función creada arriba
+    galeria.innerHTML = ""; // Limpiamos la galería antes de mostrar los nuevos resultados
+    // Recorremos los GIFs y los agregamos a la galería
+    gifs.forEach((gif) => {
+      const card = crearCardGifs(gif);
+      galeria.appendChild(card);
+    });
+  };
+}
