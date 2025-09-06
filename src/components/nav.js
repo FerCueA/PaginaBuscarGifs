@@ -1,9 +1,9 @@
-import './nav.css'
+import "./nav.css";
 
 export function crearNav() {
-    const nav = document.createElement('nav');
-    nav.className = 'navbar';
-    nav.innerHTML = `
+  const nav = document.createElement("nav");
+  nav.className = "navbar";
+  nav.innerHTML = `
         <div class="nav-container">
             <a href="#" class="nav-logo">Buscador de GIFs</a>
             <ul class="nav-menu">
@@ -13,5 +13,5 @@ export function crearNav() {
             </ul>
         </div>
     `;
-    return nav;
+  return nav;
 }

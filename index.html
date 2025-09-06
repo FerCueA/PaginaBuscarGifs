@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,16 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
-  <body>
 
-     <!-- un header con un buscador-->
-      <div class="navContainer"></div>
+  <body>
     <header>
-      <h1>Buscador de GIF  </h1>
-      <form id="formulario-buscador">
-        <input type="text" id="buscador" placeholder="Cerditos Bonitos" required>
-        <button type="submit">Buscar</button>
-      </form>
+      <div class="navContainer"></div>
     </header>
 
     <div class="galeria">
@@ -23,7 +17,11 @@
     </div>
     <main id="galeriaGifs"></main>
 
-     <!-- Vite se encarga de cargar el main.js -->
+    <section id="footerContainer">
+      <div class="footerNav"></div>
+    </section>
+
+    <!-- Vite se encarga de cargar el main.js -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
