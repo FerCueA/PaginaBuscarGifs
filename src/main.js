@@ -42,22 +42,15 @@ async function buscarGifs(termino){
 // Cuando el usuario envía el formulario (pulsa "Buscar"), se ejecuta esta función
 formulario.onsubmit = async function (evento) {
   evento.preventDefault(); // Evita que la página se recargue
-
-  // Tomamos el texto que el usuario escribió en el input
-  const textoBuscador = buscador.value;
-  // Buscamos los GIFs usando la función creada arriba
-  const gifs = await buscarGifs(textoBuscador);
-
-  // Limpiamos la galería antes de mostrar los nuevos resultados
-  galeria.innerHTML = '';
-
+  const textoBuscador = buscador.value;// Tomamos el texto que el usuario escribió en el input
+  const gifs = await buscarGifs(textoBuscador);// Buscamos los GIFs usando la función creada arriba
+  galeria.innerHTML = '';  // Limpiamos la galería antes de mostrar los nuevos resultados
+  
   // Recorremos el array de GIFs y mostramos cada uno usando el componente de la card
   gifs.forEach(gif => {
-    const esFavorito = favoritos.includes(gif.id);
-    const card = crearCardGifs(gif, esFavorito, toggleFavorito); // Creamos la card para cada GIF
-
-    
-    galeria.appendChild(card);       // Añadimos la card a la galería
+      const esFavorito = favoritos.includes(gif.id);
+      const card = crearCardGifs(gif, esFavorito, toggleFavorito); // Creamos la card para cada GIF
+      galeria.appendChild(card);       // Añadimos la card a la galería
   });
 };
 

@@ -23,7 +23,6 @@ body {
 }
 
 header {
-  
   color: #fff;  
   padding: 16px;
   display: flex;
@@ -36,7 +35,7 @@ header {
 #formulario-buscador {
   margin-top: 12px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 8px;
 }
 #buscador {
