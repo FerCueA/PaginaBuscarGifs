@@ -3,6 +3,8 @@
 import './style.css'
 import { crearCardGifs } from './components/gifsCards';
 import './components/gifsCards.css';
+import { crearNav } from './components/nav';
+import './components/nav.css';
 
 // Obtenemos la API key desde las variables de entorno (.env)
 // Así evitamos subir la clave privada al repositorio
@@ -37,33 +39,16 @@ async function buscarGifs(termino){
 }
 
 
-
-
 // Cuando el usuario envía el formulario (pulsa "Buscar"), se ejecuta esta función
 formulario.onsubmit = async function (evento) {
   evento.preventDefault(); // Evita que la página se recargue
   const textoBuscador = buscador.value;// Tomamos el texto que el usuario escribió en el input
   const gifs = await buscarGifs(textoBuscador);// Buscamos los GIFs usando la función creada arriba
   galeria.innerHTML = '';  // Limpiamos la galería antes de mostrar los nuevos resultados
-  
-  // Recorremos el array de GIFs y mostramos cada uno usando el componente de la card
+  // Recorremos los GIFs y los agregamos a la galería
   gifs.forEach(gif => {
-      const esFavorito = favoritos.includes(gif.id);
-      const card = crearCardGifs(gif, esFavorito, toggleFavorito); // Creamos la card para cada GIF
-      galeria.appendChild(card);       // Añadimos la card a la galería
+    const card = crearCardGifs(gif);
+    galeria.appendChild(card);
   });
 };
 
-
-let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
-
-function toggleFavorito(id) {
-  if (favoritos.includes(id)) {
-    favoritos = favoritos.filter(favId => favId !== id);
-    console.log(`Quitado de favoritos: ${id}`);
-  } else {
-    favoritos.push(id);
-    console.log(`Añadido a favoritos: ${id}`);
-  }
-  localStorage.setItem('favoritos', JSON.stringify(favoritos));
-}
