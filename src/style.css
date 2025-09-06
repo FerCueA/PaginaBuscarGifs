@@ -2,7 +2,7 @@
   --fuenteTexto2: 'Georgia';
   --fuenteTexto1: 'Arial';
   --colorPrimario: hsl(150, 1%, 69%);
-  --colorSegundario: #4d53a6;
+  --colorSegundario: #3a49e8;
 
  
 }
@@ -18,7 +18,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   
 }
 
@@ -52,4 +51,9 @@ header {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 16px;  
+}
+
+.navContainer {
+  width: 100%;
+  margin-bottom: 16px;
 }

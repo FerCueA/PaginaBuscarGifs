@@ -4,7 +4,6 @@ import './style.css'
 import { crearCardGifs } from './components/gifsCards';
 import './components/gifsCards.css';
 import { crearNav } from './components/nav';
-import './components/nav.css';
 
 // Obtenemos la API key desde las variables de entorno (.env)
 // Así evitamos subir la clave privada al repositorio
@@ -15,7 +14,10 @@ const formulario = document.getElementById('formulario-buscador'); // Formulario
 const buscador = document.getElementById('buscador'); // Input donde el usuario escribe
 const galeria = document.getElementById('galeriaGifs'); // Contenedor donde se muestran los GIFs
 
-
+// CREANDO EL NAV
+const navContainer = document.querySelector('.navContainer');
+const nav = crearNav();
+navContainer.appendChild(nav);
 
 // Crea la URL (endpoint) para buscar GIFs en la API de Giphy
 // Recibe la clave y el término de búsqueda, y devuelve la URL lista para usar
